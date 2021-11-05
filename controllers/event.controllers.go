@@ -5,7 +5,8 @@ import (
 	M "slot/middleware"
 	"slot/models"
 	"slot/services"
-	V "slot/validators"
+
+	// V "slot/validators"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -57,11 +58,11 @@ func (EventController) CreateEvent(ctx *gin.Context) {
 	}
 
 	//validation
-	errors := V.Validation{}.IsValid(&event)
-	if errors != nil {
-		ctx.JSON(http.StatusBadRequest, &M.ResponseTransformer{Message: "Validation error!", Data: errors, Success: false})
-		return
-	}
+	// errors := V.Validation{}.IsValid(&event)
+	// if errors != nil {
+	// 	ctx.JSON(http.StatusBadRequest, &M.ResponseTransformer{Message: "Validation error!", Data: errors, Success: false})
+	// 	return
+	// }
 
 	res := services.CreateEvent(&event)
 	if !res.Success {
